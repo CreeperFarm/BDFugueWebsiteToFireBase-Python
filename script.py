@@ -1,7 +1,5 @@
-from selenium import webdriver
+import firebase_admin
+from firebase_admin import credentials
 
-# Créer une variable pour déclancher le driver
-driver = webdriver.Firefox()
-driver.get("https://anime-sama.fr/")
-
-#
+cred = credentials.Certificate("path/to/serviceAccountKey.json")
+firebase_admin.initialize_app(cred)
