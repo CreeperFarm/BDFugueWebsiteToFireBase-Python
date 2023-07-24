@@ -90,5 +90,6 @@ print(title.text)
 editor = driver.find_element(By.CLASS_NAME, "rpi-carousel-attribute-card") # A fix
 print(editor.text)
 
+# Récuperer la disponibilité du manga
 available = driver.find_element(By.ID, 'availability') # A fix
 print(available.text)
