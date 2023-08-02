@@ -95,7 +95,8 @@ driver.switch_to.default_content()
 
 # Récupérer l'éditeur du manga
 editor = driver.find_element(By.XPATH, "/html/body/div[3]/div[2]/div/div/div/div[2]/div[9]/ul[3]/li[1]/a")
-print(editor.text)
+editor = editor.text
+print(editor)
 
 # Récupérer le nombre de pages du manga
 pageNumber = driver.find_element(By.XPATH, "/html/body/div[3]/div[2]/div/div/div/div[2]/div[9]/ul[2]/li[3]")
@@ -110,22 +111,26 @@ print(ean)
 
 driver.quit()
 
+with open('data_scrap.json', encoding='utf-8') as json_file:
+    dicts = json.load(json_file)
+
 new_data = {
-	"manga": str(manga_title),
-    "author": str(author_name),
-    "price": str(price),
-    "available": str(available),
-    "releaseDate": str(releaseDate),
-    "type": str(type),
-    "resume": str(resume),
-    "editor": str(editor),
-    "pageNumber": str(pageNumber),
-    "ean": str(ean),
+	'manga': str(manga_title),
+    'author': str(author_name),
+    'price': str(price),
+    'available': str(available),
+    'releaseDate': str(releaseDate),
+    'type': str(type),
+    'resume': str(resume),
+    'editor': str(editor),
+    'pageNumber': str(pageNumber),
+    'ean': str(ean),
 }
-new_data_obj = json.loads(new_data)
+
+dicts.apprend(new_data)
 
 with open('data_scrap.json', "w") as data_scrap:
-    json.dump(new_data_obj, data_scrap, indent=2)
+    json.dump(dicts, data_scrap, indent=4, sort_keys=True)
 with open('data_scrap.json', "r") as data_scrap:
     data = json.load(data_scrap)
     
