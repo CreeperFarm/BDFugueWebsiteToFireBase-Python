@@ -3,6 +3,7 @@ from tkinter import ttk
 import json
 
 fenetre = Tk()
+fenetre.geometry("500x500")
 fenetre.title("Ajout d'url")
 base = "https://bdfugue.com/"
 
