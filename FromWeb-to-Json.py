@@ -132,6 +132,7 @@ def get_manga_info(url):
     author_name = driver.find_element(By.XPATH, "/html[1]/body[1]/div[2]/main[1]/div[2]/div[1]/div[2]/section[1]/div[1]/div[1]/div[1]/div[2]/p[1]/a[1]")
     author_name = author_name.text.replace("\u014d", '0254')
     print(author_name)
+    author_name = author_name.replace("0254", "ō")
     try :
         author_name2 = driver.find_element(By.XPATH, "/html[1]/body[1]/div[2]/main[1]/div[2]/div[1]/div[2]/section[1]/div[1]/div[1]/div[1]/div[2]/p[1]/a[2]")
         print(author_name2.text)
@@ -140,7 +141,7 @@ def get_manga_info(url):
         print("Pas d'auteur 2")
 
     # Récupérer le prix du manga
-    price = driver.find_element(By.CLASS_NAME, "price")
+    price = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[2]/div/div[2]/section[1]/div[2]/div/div[1]/div[1]/div[2]/div/span[2]/span")
     price = price.text
     print(price)
 
@@ -154,8 +155,8 @@ def get_manga_info(url):
     print(available)
 
     # Récupérer la date de sortie du manga
-    releaseDate = driver.find_element(By.XPATH, "/html[1]/body[1]/div[2]/main[1]/div[2]/div[1]/div[2]/section[1]/div[1]/section[1]/div[2]/div[1]/div[12]/div[2]")
-    releaseDate = releaseDate.text.replace("Date de parution : ", "")
+    releaseDate = driver.find_element(By.XPATH, "/html[1]/body[1]/div[2]/main[1]/div[2]/div[1]/div[2]/section[1]/div[1]/div[1]/div[1]/div[4]/div[1]/div[1]/span[1]")
+    releaseDate = releaseDate.text#.replace("Date de parution : ", "")
     releaseDate = releaseDate.split(" ")
     
     # Remplacer le mois par son numéro associé
@@ -171,18 +172,30 @@ def get_manga_info(url):
         "septembre": "09",
         "octobre": "10",
         "novembre": "11",
-        "décembre": "12"
+        "décembre": "12",
+        "janv.": "01",
+        "févr.": "02",
+        "mars": "03",
+        "avri.": "04",
+        "mai": "05",
+        "juin": "06",
+        "juil.": "07",
+        "août": "08",
+        "sept.": "09",
+        "octo.": "10",
+        "nove.": "11",
+        "déce.": "12"
     }
-    releaseDate1 = releaseDate[1].toLowerCase()
-    releaseDate[1] = date_dico[releaseDate1]
+    releaseDate[1] = date_dico[releaseDate[1]]
     # Remise en forme de la date
-    releaseDate = releaseDate1 + "/" + releaseDate[0] + "/" + releaseDate[2]
+    releaseDate = releaseDate[1] + "/" + releaseDate[0] + "/" + releaseDate[2]
     print(releaseDate)
 
     # Récupérer le genre du manga
     try:
         type = driver.find_element(By.XPATH, "/html[1]/body[1]/div[2]/main[1]/div[2]/div[1]/div[2]/section[1]/div[1]/section[1]/div[2]/div[1]/div[3]/div[2]/a[1]")
         type = type.text#.replace("Genre : ", "")
+        print(type)
         type = type.split(" ")
         # Remplacer le genre par son nom japonais si dans le dico
         type_dico = {
@@ -193,14 +206,13 @@ def get_manga_info(url):
         }
 
         if type[0] in type_dico:
+            print(type[0])
             type = type_dico[type[0]]
         else:
             type = type[0]
     except Exception as ex:
         type = "Genre inconnu"
         return "Genre inconnu"
-    
-    print(type)
 
     # Récupérer le résumé du manga
     resume = driver.find_element(By.XPATH, "/html[1]/body[1]/div[2]/main[1]/div[2]/div[1]/div[2]/section[1]/div[1]/div[1]/div[1]/div[5]/div[1]/div[1]/div[1]/div[1]")
@@ -224,7 +236,7 @@ def get_manga_info(url):
     print(editor)
 
     # Récupérer le nombre de pages du manga
-    pageNumber = driver.find_element(By.XPATH, "/html[1]/body[1]/div[2]/main[1]/div[2]/div[1]/div[2]/section[1]/div[1]/section[1]/div[2]/div[1]/div[8]/div[2]")
+    pageNumber = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[2]/div/div[2]/section[1]/div[1]/section/div[2]/div/div[9]/div[2]")
     pageNumber = pageNumber.text#.replace("Nombre de pages : ", "")
     print(pageNumber)
 
@@ -234,9 +246,7 @@ def get_manga_info(url):
     print(ean)
     
     # Récupérer le lien de l'image du manga
-    # driver.find_element(By.ID, "media-top-zoom").click()
-    img = driver.find_element(By.CLASS_NAME, "element-slideshow").find_element(By.TAG_NAME, "img")
-    # driver.find_element(By.ID, "media-popup-close").click()
+    img = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[2]/div/div[2]/section[1]/div[1]/div[1]/div/div[1]/div/div[2]/div[1]/picture[2]/img")
     img = img.get_attribute("src")
     print(img)
 
@@ -271,12 +281,8 @@ def get_manga_info(url):
     # Lecture de toute les données du fichier json
     with open('data_scrap.json', "r") as data_scrap:
         data = json.load(data_scrap)
-    
-    print(data)
-    
-get_manga_info("https://www.bdfugue.com/my-hero-my-hero-academia-tome-24")
 
-"""  
+
 with open('url_ok.json', 'r', encoding='utf-8') as urls:
     url_from_file = json.load(urls)
     for i in url_from_file:
@@ -284,4 +290,3 @@ with open('url_ok.json', 'r', encoding='utf-8') as urls:
         get_manga_info(url)
 with open('url_ok.json', 'w', encoding='utf-8') as urls:
     json.dump([], urls)
-    """
