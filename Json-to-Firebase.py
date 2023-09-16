@@ -1,19 +1,19 @@
-
-# Importation de la librairie firebase_admin
+# Import the dependencies needed
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 import json
 
-# Initialisation de l'application avec les informations du compte de service
+# Intitialize the app with the service account
 cred = credentials.Certificate("path/to/serviceAccountKey.json")
-
-# Importation 
 
 # Application Default credentials are automatically created.
 app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 
+collection_name = "manga"
+
+# Get the data from the json file and add it to the database
 with open('data_scrap.json', "r", encoding='utf-8') as json_file:
     dicts = json.load(json_file)
     for i in dicts:
@@ -45,9 +45,9 @@ with open('data_scrap.json', "r", encoding='utf-8') as json_file:
             "tomeNumber": str(tomeNumber),
             "type": str(type)
         }
-        mangadb = db.collection(manga)
+        mangadb = db.collection(collection_name)
         mangas = mangadb.stream()
-        update_time, mangaadd_ref = db.collection(manga).add(manga_add_list)
+        update_time, mangaadd_ref = db.collection(collection_name).add(manga_add_list)
         print(f"Added document with id {mangaadd_ref.id}")
         
 with open('data_scrap.json', "w", encoding='utf-8') as json_file:

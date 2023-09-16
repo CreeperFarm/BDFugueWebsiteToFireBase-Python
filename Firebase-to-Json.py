@@ -14,8 +14,8 @@ app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 
 # Récupération des données de la base de données
-
-mangadb = db.collection("manga")
+collection_name = "manga"
+mangadb = db.collection(collection_name)
 mangas = mangadb.stream()
 
 with open('data.json', encoding='utf-8') as json_file:
