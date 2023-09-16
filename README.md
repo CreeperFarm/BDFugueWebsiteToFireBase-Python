@@ -9,7 +9,6 @@ A Python Program that use BDFugue Website with data grab by Selenium and FireBas
 
 [![My Skills](https://skillicons.dev/icons?i=python,selenium,github,vscode)](https://skillicons.dev)
 
-<<<<<<< HEAD
 ## Table of contents
 
 * [The Requirements](#to-use-this-project-you-need)
@@ -95,6 +94,3 @@ To change the collection name of your database inside this project you should ch
 
 * `Firebase-to-Json.py` on line 17 ```collection_name = "manga"``` and change the name who is between the quotes
 * `Json-to-Firebase.py` on line 14  ```collection_name = "manga"``` and change the name who is between the quotes
-=======
-## To use this project, you need :
->>>>>>> 739fda5c1b38843cd339dc3bdb5995f3dd7ceff3
