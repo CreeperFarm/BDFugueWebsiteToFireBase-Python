@@ -1,6 +1,6 @@
-# Amazon Api To FireBase Real Time DataBase in Python
+# BDFugue Website To FireBase Real Time DataBase in Python
 
- A Python Program that use Amazon API and FireBase Admin API to connect them to automaticly deliver information from Amazon to A Real Time DataBase from FireBase
+A Python Program that use BDFugue Website with data grab by Selenium and FireBase Admin API to connect them to automaticly deliver information from BDFugue Website to A Real Time DataBase on FireBase.
 
 [![wakatime](https://wakatime.com/badge/user/c21fbe25-694d-4415-9541-9ff274316f89/project/c7b2069b-7921-4fca-bc51-f16d5a01cc9c.svg)](https://wakatime.com/badge/user/c21fbe25-694d-4415-9541-9ff274316f89/project/c7b2069b-7921-4fca-bc51-f16d5a01cc9c)
 ![example workflow](https://github.com/CreeperFarm/BDFugueWebsiteToFireBase-Python/actions/workflows/<WORKFLOW_FILE>/badge.svg)
@@ -9,6 +9,7 @@
 
 [![My Skills](https://skillicons.dev/icons?i=python,selenium,github,vscode)](https://skillicons.dev)
 
+<<<<<<< HEAD
 ## Table of contents
 
 * [The Requirements](#to-use-this-project-you-need)
@@ -94,3 +95,6 @@ To change the collection name of your database inside this project you should ch
 
 * `Firebase-to-Json.py` on line 17 ```collection_name = "manga"``` and change the name who is between the quotes
 * `Json-to-Firebase.py` on line 14  ```collection_name = "manga"``` and change the name who is between the quotes
+=======
+## To use this project, you need :
+>>>>>>> 739fda5c1b38843cd339dc3bdb5995f3dd7ceff3
