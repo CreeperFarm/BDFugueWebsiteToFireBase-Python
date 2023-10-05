@@ -1,4 +1,4 @@
-from tkinter import * 
+from tkinter import *
 from tkinter import ttk
 import json
 
@@ -13,11 +13,11 @@ entrystartlink = Entry(fenetre, textvariable=str, width=45)
 entrystartlink.pack()
 label = Label(fenetre, text="Entrée le numéro de début de tome a ajouter")
 label.pack()
-entrystartnum = Entry(fenetre, textvariable=str, width=45)
+entrystartnum = Entry(fenetre, textvariable=int, width=45)
 entrystartnum.pack()
 label = Label(fenetre, text="Entrée le numéro de fin de tome a ajouter")
 label.pack()
-entryendnum = Entry(fenetre, textvariable=str, width=45)
+entryendnum = Entry(fenetre, textvariable=int, width=45)
 entryendnum.pack()
 deluxe = ttk.Checkbutton(fenetre, text="Deluxe ?")
 deluxe.pack()
@@ -45,7 +45,7 @@ label = Label(fenetre, text="Entrée la fin du lien personnalisé (ex: -collecti
 label.pack()
 entrycustom = Entry(fenetre, textvariable=str, width=45)
 entrycustom.pack()
-bouton=Button(fenetre, text="Envoyer", command=fenetre.quit)
+bouton = Button(fenetre, text="Envoyer", command=fenetre.quit)
 bouton.pack()
 
 fenetre.mainloop()
@@ -59,36 +59,34 @@ print(edilimit.instate(['selected']))
 print(entrycustom.get())
 
 with open('url.json', "r", encoding='utf-8') as json_file:
-            dicts = json.load(json_file)
+    dicts = json.load(json_file)
 
 if pack.instate(['selected']):
     if onetox.instate(['selected']):
-        if  packaddtome.instate(['selected']):
+        if packaddtome.instate(['selected']):
             start = int(entrystartnum.get())
             end = start + int(entrypack.get()) - 1
-            url = ""
             url = str(start) + "-a-" + str(end)
             url = base + "coffret-" + entrystartlink.get() + "-tomes-" + url
             print(url)
             url_new = {
                 "url": str(url)
             }
-            dicts.append(url_new)  
+            dicts.append(url_new)
         else:
             start = int(entrystartnum.get())
             end = start + int(entrypack.get()) - 1
-            url = ""
             url = str(start) + "-a-" + str(end)
             url = base + "coffret-" + entrystartlink.get() + url
             print(url)
             url_new = {
                 "url": str(url)
             }
-            dicts.append(url_new)  
+            dicts.append(url_new)
     else:
-        if  packaddtome.instate(['selected']):
+        if packaddtome.instate(['selected']):
             start = int(entrystartnum.get())
-            end = start + int(entrypack.get()) - 1 
+            end = start + int(entrypack.get()) - 1
             url = ""
             for i in range(start, end):
                 url = url + "-" + str(i)
@@ -97,7 +95,7 @@ if pack.instate(['selected']):
             url_new = {
                 "url": str(url)
             }
-            dicts.append(url_new)  
+            dicts.append(url_new)
         else:
             start = int(entrystartnum.get())
             end = start + int(entrypack.get()) - 1
@@ -109,25 +107,25 @@ if pack.instate(['selected']):
             url_new = {
                 "url": str(url)
             }
-            dicts.append(url_new)  
+            dicts.append(url_new)
 else:
-    for i in range(int(entrystartnum.get()), int(entryendnum.get())+1):
-        if deluxe.instate(['selected']) == True:
+    for i in range(int(entrystartnum.get()), int(entryendnum.get()) + 1):
+        if deluxe.instate(['selected']):
             print(base + entrystartlink.get() + "-tome-" + str(i) + "-deluxe")
             url = base + entrystartlink.get() + "-tome-" + str(i) + "-deluxe"
-        elif collector.instate(['selected']) == True:
+        elif collector.instate(['selected']):
             print(base + entrystartlink.get() + "-tome-" + str(i) + "-collector")
             url = base + entrystartlink.get() + "-tome-" + str(i) + "-collector"
-        elif edispe.instate(['selected']) == True:
+        elif edispe.instate(['selected']):
             print(base + entrystartlink.get() + "-tome-" + str(i) + "-edition-speciale")
             url = base + entrystartlink.get() + "-tome-" + str(i) + "-edition-speciale"
-        elif edilimit.instate(['selected']) == True:
+        elif edilimit.instate(['selected']):
             print(base + entrystartlink.get() + "-tome-" + str(i) + "-edition-limitee")
             url = base + entrystartlink.get() + "-tome-" + str(i) + "-edition-limitee"
-        elif edxtra.instate(['selected']) == True:
+        elif edxtra.instate(['selected']):
             print(base + entrystartlink.get() + "-tome-" + str(i) + "-ed-xtra")
             url = base + entrystartlink.get() + "-tome-" + str(i) + "-ed-xtra"
-        elif editionxtra.instate(['selected']) == True:
+        elif editionxtra.instate(['selected']):
             print(base + entrystartlink.get() + "-tome-" + str(i) + "-edition-xtra")
             url = base + entrystartlink.get() + "-tome-" + str(i) + "-edition-xtra"
         elif entrycustom.get() != "":
@@ -140,6 +138,6 @@ else:
             "url": str(url)
         }
         dicts.append(url_new)
-    
+
 with open('url.json', "w", encoding='utf-8') as json_file:
     json.dump(dicts, json_file, indent=4, sort_keys=True)
