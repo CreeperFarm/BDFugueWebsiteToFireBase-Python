@@ -1,9 +1,8 @@
 # BDFugue Website To FireBase Real Time DataBase in Python
 
-A Python Program that use BDFugue Website with data grab by Selenium and FireBase Admin API to connect them to automaticly deliver information from BDFugue Website to A Real Time DataBase on FireBase.
+A Python Program that use BDFugue Website with data grab by Selenium and FireBase Admin API to connect them to automatically deliver information from BDFugue Website to A Real Time DataBase on FireBase.
 
 [![wakatime](https://wakatime.com/badge/user/c21fbe25-694d-4415-9541-9ff274316f89/project/c7b2069b-7921-4fca-bc51-f16d5a01cc9c.svg)](https://wakatime.com/badge/user/c21fbe25-694d-4415-9541-9ff274316f89/project/c7b2069b-7921-4fca-bc51-f16d5a01cc9c)
-![example workflow](https://github.com/CreeperFarm/BDFugueWebsiteToFireBase-Python/actions/workflows/<WORKFLOW_FILE>/badge.svg)
 
  For this project I use:
 
@@ -40,7 +39,7 @@ Go to [FireBase](https://firebase.google.com/) , log-in into your Google Account
 
 ### Step 2 : Get the service account key
 
-Go to the parameter of your FireBase Project then, go Account Service and click on "SDK Admin Firebase" then Python and click on "Generate new private key" and save the file in the `PROJECT_FOLDER/path/to/` , with `serviceAcoountKey.json` as name and then your file could be use to send data to your FireBase Real Time DataBase.
+Go to the parameter of your FireBase Project then, go Account Service and click on "SDK Admin Firebase" then Python and click on "Generate new private key" and save the file in the `PROJECT_FOLDER/path/to/` , with `serviceAcoountKey.json` as name and then your file could be used to send data to your FireBase Real Time DataBase.
 
 ### Step 3 : Install Python and the dependencies on your project
 
@@ -63,7 +62,7 @@ To use the project, you can do different things to start,
 
 * You can grab the data you already have inside your real time database with `Firebase-to-Json.py` (if your collection name in your database is not "manga" then see how to change it inside this project on : [How to change the FireBase Real Time DataBase collection name inside this project](#how-to-change-the-firebase-real-time-database-collection-name)).
 * You can use `add_url.py` to use a little interface to add url to `url.json`.
-* [Warning: you must use `add_url.py` before running this] You can use `url_verifier.py` to lauch the verfier who will lauch the webdriver and check if the url in `url.json` to see if they are usable to get data or not and if they are, it will add them to `url_ok.json` and for the one that don't work they will be the only urls remaining on `url.json` and you should find yourself the url that work for the Manga you want to grab the data to change those url you should go to `url.json` then you must have the code below, than you should change the url who is between the quotes to the one who work  and then you can relaunch `url_verifier.py` to check if the url are usable or not by the bot (`%manga_name%` is the manga name that you have set and `%tome_number%` is the number set).
+* [Warning: you must use `add_url.py` before running this] You can use `url_verifier.py` to launch the verifier who will launch the webdriver and check if the url in `url.json` to see if they are usable to get data or not and if they are, it will add them to `url_ok.json` and for the one that don't work they will be the only urls remaining on `url.json` and you should find yourself the url that work for the Manga you want to grab the data to change those url you should go to `url.json` then you must have the code below, than you should change the url who is between the quotes to the one who work, and then you can relaunch `url_verifier.py` to check if the url are usable or not by the bot (`%manga_name%` is the manga name that you have set and `%tome_number%` is the number set).
 
 ```json
 [
@@ -73,11 +72,11 @@ To use the project, you can do different things to start,
     {
         "url": "https://www.bdfugue.com/%anime_name%-tome-%tome_number%"
     },
-    ...
+    "..."
 ]
 ```
 
-* [Warning: you must use `url_verifier.py` before running this] You can use `FromWeb-to-Json` to lauch the scraper who will lauch the webdriver and get the urldata from the url in `url_ok.json` and then add the data scrap to `data_scrap.json`.
+* [Warning: you must use `url_verifier.py` before running this] You can use `FromWeb-to-Json` to launch the scraper who will launch the webdriver and get the data from the url in `url_ok.json` and then add the data scrap to `data_scrap.json`.
 
 ## How to
 
