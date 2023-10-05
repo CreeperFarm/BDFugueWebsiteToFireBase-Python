@@ -31,5 +31,5 @@ with open('data.json', 'w', encoding='utf-8') as json_file:
     
 with open('data.json', encoding='utf-8') as json_file:
     data = json.load(json_file)
-#for i in data:
+# for i in data:
 #    print("Genre : ", i['type'])

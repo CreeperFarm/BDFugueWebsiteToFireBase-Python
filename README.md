@@ -2,11 +2,11 @@
 
 A Python Program that use BDFugue Website with data grab by Selenium and FireBase Admin API to connect them to automatically deliver information from BDFugue Website to A Real Time DataBase on FireBase.
 
-[![wakatime](https://wakatime.com/badge/user/c21fbe25-694d-4415-9541-9ff274316f89/project/c7b2069b-7921-4fca-bc51-f16d5a01cc9c.svg)](https://wakatime.com/badge/user/c21fbe25-694d-4415-9541-9ff274316f89/project/c7b2069b-7921-4fca-bc51-f16d5a01cc9c)
+[![wakatime](https://wakatime.com/badge/github/CreeperFarm/BDFugueWebsiteToFireBase-Python.svg)](https://wakatime.com/badge/github/CreeperFarm/BDFugueWebsiteToFireBase-Python)
 
  For this project I use:
 
-[![My Skills](https://skillicons.dev/icons?i=python,selenium,github,vscode)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=python,selenium,firebase,github,idea,vscode)](https://skillicons.dev)
 
 ## Table of contents
 

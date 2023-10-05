@@ -49,6 +49,6 @@ with open('data_scrap.json', "r", encoding='utf-8') as json_file:
         mangas = mangadb.stream()
         update_time, mangaadd_ref = db.collection(collection_name).add(manga_add_list)
         print(f"Added document with id {mangaadd_ref.id}")
-        
+
 with open('data_scrap.json', "w", encoding='utf-8') as json_file:
     json.dump([], json_file)

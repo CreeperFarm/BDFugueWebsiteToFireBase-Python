@@ -1,6 +1,6 @@
 import json
+
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 
 not_ok = []
@@ -8,30 +8,32 @@ not_ok = []
 with open('url_ok.json', 'r', encoding='utf-8') as urls:
     urls_verify = json.load(urls)
     if len(urls_verify) != 0:
-        ok = urls_verify 
+        ok = urls_verify
     else:
         print("No url already verify")
         ok = urls_verify
-    
 
 # Créer une inox()stance du navigateur
 driver = webdriver.Firefox()
 
+
 def verify(url):
     driver.get(url)
-    try :
-        driver.find_element(By.XPATH, "//h1[@class='font-headline cmsp1-text-7xl cmsp1-lg:text-8xl cmsp1-text-gray-900 cmsp1-mb-4 cmsp1-font-bold cmsp1-text-center cmsp1-lg:text-left']")
+    try:
+        driver.find_element(By.XPATH,
+                            "//h1[@class='font-headline cmsp1-text-7xl cmsp1-lg:text-8xl cmsp1-text-gray-900 cmsp1-mb-4 cmsp1-font-bold cmsp1-text-center cmsp1-lg:text-left']")
         print(url + " is not ok")
         url_new = {
             "url": str(url),
         }
         not_ok.append(url_new)
-    except Exception as ex:
+    except Exception:
         print(url + " is ok")
         url_new = {
             "url": str(url),
         }
         ok.append(url_new)
+
 
 with open('url.json', 'r', encoding='utf-8') as urls:
     url_from_file = json.load(urls)
@@ -39,7 +41,7 @@ with open('url.json', 'r', encoding='utf-8') as urls:
         for i in url_from_file:
             url = i['url']
             verify(url)
-                
+
         driver.quit()
 
         if len(not_ok) == 0:
