@@ -11,8 +11,6 @@ cred = credentials.Certificate("path/to/serviceAccountKey.json")
 app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 
-collection_name = "manga"
-
 # Get the data from the json file and add it to the database
 with open('data_scrap.json', "r", encoding='utf-8') as json_file:
     dicts = json.load(json_file)
@@ -45,10 +43,12 @@ with open('data_scrap.json', "r", encoding='utf-8') as json_file:
             "tomeNumber": str(tomeNumber),
             "type": str(type)
         }
+        collection_name = i['manga']
         mangadb = db.collection(collection_name)
         mangas = mangadb.stream()
-        update_time, mangaadd_ref = db.collection(collection_name).add(manga_add_list)
-        print(f"Added document with id {mangaadd_ref.id}")
+        mangaadd_ref = db.collection(collection_name).document(i['tomeNumber']).set(manga_add_list)
+        # update_time, mangaadd_ref = db.collection(collection_name).document(i['tomeNumber']).set(manga_add_list)
+        print(f"Added document with id {mangaadd_ref}")
 
 with open('data_scrap.json', "w", encoding='utf-8') as json_file:
     json.dump([], json_file)
