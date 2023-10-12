@@ -24,9 +24,9 @@ with open('data_scrap.json', "r", encoding='utf-8') as json_file:
         manga = i['manga']
         pageNumber = i['pageNumber']
         price = i['price']
-        releaseDate = i['releaseDate']
+        releaseDate = i['release_date']
         resume = i['resume']
-        tomeNumber = i['tomeNumber']
+        tomeNumber = i['tome_number']
         type = i['type']
         manga_add_list = {
             "author": str(author),
@@ -46,7 +46,7 @@ with open('data_scrap.json', "r", encoding='utf-8') as json_file:
         collection_name = i['manga']
         mangadb = db.collection(collection_name)
         mangas = mangadb.stream()
-        mangaadd_ref = db.collection(collection_name).document(i['tomeNumber']).set(manga_add_list)
+        mangaadd_ref = db.collection(collection_name).document(i['tome_number']).set(manga_add_list)
         # update_time, mangaadd_ref = db.collection(collection_name).document(i['tomeNumber']).set(manga_add_list)
         print(f"Added document with id {mangaadd_ref}")
 

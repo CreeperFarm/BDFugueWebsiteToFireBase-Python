@@ -20,8 +20,7 @@ driver = webdriver.Firefox()
 def verify(url):
     driver.get(url)
     try:
-        driver.find_element(By.XPATH,
-                            "//h1[@class='font-headline cmsp1-text-7xl cmsp1-lg:text-8xl cmsp1-text-gray-900 cmsp1-mb-4 cmsp1-font-bold cmsp1-text-center cmsp1-lg:text-left']")
+        driver.find_element(By.XPATH, "//h1[@class='font-headline cmsp1-text-7xl cmsp1-lg:text-8xl cmsp1-text-gray-900 cmsp1-mb-4 cmsp1-font-bold cmsp1-text-center cmsp1-lg:text-left']")
         print(url + " is not ok")
         url_new = {
             "url": str(url),
