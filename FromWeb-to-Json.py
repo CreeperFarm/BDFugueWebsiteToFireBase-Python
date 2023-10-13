@@ -67,8 +67,13 @@ def get_manga_info(url):
     print(manga_title)
 
     # Récupérer le numéro du tome du manga
-    tome_number = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[2]/div/div[2]/section[1]/div[1]/section/div[2]/div/div[11]/div[2]")
-    tome_number = tome_number.text
+    tome_number_unsplit = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[2]/div/div[2]/section[1]/div[1]/section/div[2]/div/div[11]/div[2]")
+    tome_number_unsplit = tome_number_unsplit.text
+    tome_number = tome_number_unsplit.split(" ")
+    if (tome_number_unsplit == tome_number[0]):
+        tome_number = tome_number_unsplit
+    else:
+        tome_number = tome_number_unsplit
     print(tome_number)
 
     # Récupérer le type d'édition du manga
@@ -212,7 +217,10 @@ def get_manga_info(url):
     # Récupérer le résumé du manga
     resume = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[2]/div/div[2]/section[1]/div[1]/div[1]/div/div[5]/div/div/div[1]/div")
     resume = resume.text
-    print(resume)
+    try:
+        print(resume)
+    except Exception:
+        print("Impossible de print le résumé à cause d'un caractère spécial")
     """
     try:
         driver.switch_to.frame('iframe-desc')
@@ -277,13 +285,14 @@ def get_manga_info(url):
     with open('data_scrap.json', "r") as data_scrap:
         data = json.load(data_scrap)
 
-get_manga_info("https://www.bdfugue.com/demon-slayer-tome-1")
+# Commande de debug
+# get_manga_info("https://www.bdfugue.com/demon-slayer-tome-1")
 
 # Récupérer les urls des mangas
-"""with open('url_ok.json', 'r', encoding='utf-8') as urls:
+with open('url_ok.json', 'r', encoding='utf-8') as urls:
     url_from_file = json.load(urls)
     for i in url_from_file:
         url = i['url']
         get_manga_info(url)
 with open('url_ok.json', 'w', encoding='utf-8') as urls:
-    json.dump([], urls)"""
+    json.dump([], urls)
