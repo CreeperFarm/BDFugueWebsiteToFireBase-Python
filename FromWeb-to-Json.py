@@ -168,12 +168,13 @@ def get_manga_info(url):
     # Récupérer le résumé du manga
     try:
         resume = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[2]/div/div[2]/section[1]/div[1]/div[1]/div/div[5]/div/div/div[1]/div")
+        resume = resume.text
     except Exception:
         try:
             resume = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[2]/div/div[2]/section[1]/div[1]/div[1]/div/div[5]/div/div/div[1]/div")
+            resume = resume.text
         except Exception:
             resume = "Pas de résumé"
-    resume = resume.text
     try:
         print(resume)
     except Exception:
