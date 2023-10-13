@@ -103,10 +103,13 @@ def get_manga_info(url):
     # Récupérer la disponibilité du manga
     available = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[2]/div/div[2]/section[1]/div[2]/div/div[2]/div[2]/div[2]/div[1]/span[1]")
     available = available.text.split(" ")
-    if available[0] == "Pré-commande":
-        available = available[0]
-    else:
-        available = available[0] + " " + available[1]
+    try:
+        if available[0] == "Pré-commande":
+            available = available[0]
+        else:
+            available = available[0] + " " + available[1]
+    except Exception:
+        available = "Indisponible"
     print(available)
 
     # Récupérer la date de sortie du manga
