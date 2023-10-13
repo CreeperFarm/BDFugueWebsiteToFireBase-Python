@@ -1,53 +1,4 @@
-""" Ave Amazon
-# Importation des librairies selenium
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
-
-# Créer une instance du navigateur
-driver = webdriver.Firefox()
-driver.get("https://www.amazon.fr/Demon-Slayer-T01-Koyoharu-Gotouge/dp/2809482314/")
-
-# Accepter les cookies
-accept_cookie = driver.find_element(By.ID, "sp-cc-accept")
-accept_cookie.click()
-
-# Récupérer le titre + le numéro du tome du manga
-manga_title = driver.find_element(By.ID, "productTitle")
-print(manga_title.text)
-
-# Récupérer l'auteur du manga
-manga_author = driver.find_element(By.CLASS_NAME, "author")
-print(manga_author.text)
-
-# Récupérer le prix du manga
-manga_price = driver.find_element(By.CLASS_NAME, "a-price")
-print(manga_price.text)
-
-# Récupérer l'éditeur du manga
-info_manga = driver.find_element(By.ID, "detailBullets_feature_div")
-print(info_manga.text)
-
-# Récupérer le lien de l'image du manga
-#img_link = driver.find_element(By.ID, "landingImage") # A fix
-#print(img_link.get_attribute("src"))
-
-# Récuperer le titre du manga
-title = driver.find_element(By.CLASS_NAME, "rpi-attribute-value")
-print(title.text)
-
-# Récuperer l'éditeur du manga
-editor = driver.find_element(By.CLASS_NAME, "rpi-carousel-attribute-card") # A fix
-print(editor.text)
-
-# Récuperer la disponibilité du manga
-available = driver.find_element(By.ID, 'availability') # A fix
-print(available.text)
-    """
-
-# Avec BDFugue
 import json
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
@@ -138,7 +89,7 @@ def get_manga_info(url):
     print(author_name)
     author_name = author_name.replace("0254", "ō")
     try:
-        author_name2 = driver.find_element(By.XPATH, "/html[1]/body[1]/div[2]/main[1]/div[2]/div[1]/div[2]/section[1]/div[1]/div[1]/div[1]/div[2]/p[1]/a[2]")
+        author_name2 = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[2]/div/div[2]/section[1]/div[1]/div[1]/div/div[2]/p/a[2]")
         print(author_name2.text)
     except Exception:
         author_name2 = ""
@@ -159,7 +110,7 @@ def get_manga_info(url):
     print(available)
 
     # Récupérer la date de sortie du manga
-    release_date = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[2]/div/div[2]/section[1]/div[1]/section/div[2]/div/div[12]/div[2]")
+    release_date = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[2]/div/div[2]/section[1]/div[1]/div[1]/div/div[4]/div/div[1]/span")
     release_date = release_date.text  # .replace("Date de parution : ", "")
     release_date = release_date.split(" ")
 
@@ -179,12 +130,12 @@ def get_manga_info(url):
         "décembre": "12",
         "janv.": "01",
         "févr.": "02",
-        "avri.": "04",
+        "avr.": "04",
         "juil.": "07",
         "sept.": "09",
-        "octo.": "10",
-        "nove.": "11",
-        "déce.": "12"
+        "oct.": "10",
+        "nov.": "11",
+        "déc.": "12"
     }
     release_date[1] = date_dico[release_date[1]]
     # Remise en forme de la date
@@ -294,5 +245,3 @@ with open('url_ok.json', 'r', encoding='utf-8') as urls:
     for i in url_from_file:
         url = i['url']
         get_manga_info(url)
-with open('url_ok.json', 'w', encoding='utf-8') as urls:
-    json.dump([], urls)
