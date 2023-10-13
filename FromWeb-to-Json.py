@@ -166,7 +166,13 @@ def get_manga_info(url):
         return "Genre inconnu"
 
     # Récupérer le résumé du manga
-    resume = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[2]/div/div[2]/section[1]/div[1]/div[1]/div/div[5]/div/div/div[1]/div")
+    try:
+        resume = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[2]/div/div[2]/section[1]/div[1]/div[1]/div/div[5]/div/div/div[1]/div")
+    except Exception:
+        try:
+            resume = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[2]/div/div[2]/section[1]/div[1]/div[1]/div/div[5]/div/div/div[1]/div")
+        except Exception:
+            resume = "Pas de résumé"
     resume = resume.text
     try:
         print(resume)
@@ -213,19 +219,19 @@ def get_manga_info(url):
 
     # Création de la liste du nouveau manga
     new_data = {
-        'manga': str(manga_title),
         'author': str(author_name),
         'author2': str(author_name2),
-        'price': str(price),
         'available': str(available),
-        'release_date': str(release_date),
-        'type': str(type_manga),
-        'resume': str(resume),
-        'editor': str(editor),
-        'pageNumber': str(page_number),
-        'tome_number': str(tome_number),
         'ean': str(ean),
+        'editor': str(editor),
         'img': str(img),
+        'manga': str(manga_title),
+        'pageNumber': str(page_number),
+        'price': str(price),
+        'release_date': str(release_date),
+        'resume': str(resume),
+        'tome_number': str(tome_number),
+        'type': str(type_manga),
     }
     # Ajouter la liste du nouveau manga dans le fichier json
     dicts.append(new_data)
