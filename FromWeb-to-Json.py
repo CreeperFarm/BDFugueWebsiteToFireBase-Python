@@ -91,14 +91,14 @@ def get_manga_info(url):
         author_name = author_name.replace("0254", "ō")
     except Exception:
         try:
-            author_name = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[2]/div/div[2]/section[1]/div[1]/div[1]/div/div[2]/p/a[1]")
+            author_name = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[2]/div/div[2]/section[1]/div[1]/div[1]/div/div[2]/p/span")
             author_name = author_name.text.replace("\u014d", '0254')
             print(author_name)
             author_name = author_name.replace("0254", "ō")
         except Exception:
             author_name = "Auteur non trouvé"
             print(author_name)
-            
+
     try:
         author_name2 = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[2]/div/div[2]/section[1]/div[1]/div[1]/div/div[2]/p/a[2]")
         print(author_name2.text)
