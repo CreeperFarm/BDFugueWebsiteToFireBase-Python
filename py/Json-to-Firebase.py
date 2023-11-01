@@ -12,7 +12,7 @@ app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 
 # Get the data from the json file and add it to the database
-with open('data_scrap.json', "r", encoding='utf-8') as json_file:
+with open('py/data_scrap.json', "r", encoding='utf-8') as json_file:
     dicts = json.load(json_file)
     for i in dicts:
         author = i['author']
@@ -49,5 +49,5 @@ with open('data_scrap.json', "r", encoding='utf-8') as json_file:
         # update_time, mangaadd_ref = db.collection(collection_name).document(i['tomeNumber']).set(manga_add_list)
         print(f"Added document with id {mangaadd_ref}")
 
-with open('data_scrap.json', "w", encoding='utf-8') as json_file:
+with open('py/data_scrap.json', "w", encoding='utf-8') as json_file:
     json.dump([], json_file)

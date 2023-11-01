@@ -58,7 +58,7 @@ print(edispe.instate(['selected']))
 print(edilimit.instate(['selected']))
 print(entrycustom.get())"""
 
-with open('url.json', "r", encoding='utf-8') as json_file:
+with open('py/url.json', "r", encoding='utf-8') as json_file:
     dicts = json.load(json_file)
 
 if pack.instate(['selected']):
@@ -139,5 +139,5 @@ else:
         }
         dicts.append(url_new)
 
-with open('url.json', "w", encoding='utf-8') as json_file:
+with open('py/url.json', "w", encoding='utf-8') as json_file:
     json.dump(dicts, json_file, indent=4, sort_keys=True)

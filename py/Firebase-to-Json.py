@@ -18,7 +18,7 @@ collection_name = "manga"
 mangadb = db.collection(collection_name)
 mangas = mangadb.stream()
 
-with open('data.json', encoding='utf-8') as json_file:
+with open('py/data.json', encoding='utf-8') as json_file:
     dicts = json.load(json_file)
 
 
@@ -26,10 +26,10 @@ for manga in mangas:
     dicts.append(manga.to_dict())    
     print(f"{manga.id} => {manga.to_dict()}")
 
-with open('data.json', 'w', encoding='utf-8') as json_file:
+with open('py/data.json', 'w', encoding='utf-8') as json_file:
     json.dump(dicts, json_file, indent=4, sort_keys=True)
     
-with open('data.json', encoding='utf-8') as json_file:
+with open('py/data.json', encoding='utf-8') as json_file:
     data = json.load(json_file)
 # for i in data:
 #    print("Genre : ", i['type'])

@@ -16,7 +16,7 @@ firebase_admin.initialize_app(cred, {
 cred = credentials.Certificate("path/to/serviceAccountKey.json")
 
 # Intitialize the value 
-file_to_open = 'data_scrap.json'
+file_to_open = 'py/data_scrap.json'
 base_ref = 'all_manga'
 
 print("Starting the script...")

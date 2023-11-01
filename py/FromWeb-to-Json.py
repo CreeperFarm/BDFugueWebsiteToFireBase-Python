@@ -229,7 +229,7 @@ def get_manga_info(url):
     driver.quit()
 
     # Récupérer les données dans le fichier json
-    with open('data_scrap.json', encoding='utf-8') as json_file:
+    with open('py/data_scrap.json', encoding='utf-8') as json_file:
         dicts = json.load(json_file)
 
     # Création de la liste du nouveau manga
@@ -250,18 +250,18 @@ def get_manga_info(url):
     }
     # Ajouter la liste du nouveau manga dans le fichier json
     dicts.append(new_data)
-    with open('data_scrap.json', "w") as data_scrap:
+    with open('py/data_scrap.json', "w") as data_scrap:
         json.dump(dicts, data_scrap, indent=4, sort_keys=True)
 
     # Lecture de toute les données du fichier json
-    with open('data_scrap.json', "r") as data_scrap:
+    with open('py/data_scrap.json', "r") as data_scrap:
         data = json.load(data_scrap)
 
 # Commande de debug
 # get_manga_info("https://www.bdfugue.com/demon-slayer-tome-1")
 
 # Récupérer les urls des mangas
-with open('url_ok.json', 'r', encoding='utf-8') as urls:
+with open('py/url_ok.json', 'r', encoding='utf-8') as urls:
     url_from_file = json.load(urls)
     for i in url_from_file:
         url = i['url']

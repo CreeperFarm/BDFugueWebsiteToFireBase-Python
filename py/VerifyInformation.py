@@ -133,18 +133,18 @@ def VerifyPanel(urlhere, a_data_to_verify):
         "type": str(type)
     }
     alldata.append(data_verify)
-    with open('data_ok.json', "w", encoding='utf-8') as json_file:
+    with open('py/data_ok.json', "w", encoding='utf-8') as json_file:
         data = json.dump(alldata, json_file, indent=4, sort_keys=True)
 
 url = []
 data_to_verify = []
 
-with open('url_ok.json', 'r', encoding='utf-8') as urls:
+with open('py/url_ok.json', 'r', encoding='utf-8') as urls:
     url_from_file = json.load(urls)
     for i in url_from_file:
         iurl = i['url']
         url.append(iurl)
-    with open('data_scrap.json', encoding='utf-8') as json_file:
+    with open('py/data_scrap.json', encoding='utf-8') as json_file:
         data = json.load(json_file)
         for j in data:
             data_to_verify.append(j)

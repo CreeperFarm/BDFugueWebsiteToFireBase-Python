@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 
 not_ok = []
 
-with open('url_ok.json', 'r', encoding='utf-8') as urls:
+with open('py/url_ok.json', 'r', encoding='utf-8') as urls:
     urls_verify = json.load(urls)
     if len(urls_verify) != 0:
         ok = urls_verify
@@ -34,7 +34,7 @@ def verify(url):
         ok.append(url_new)
 
 
-with open('url.json', 'r', encoding='utf-8') as urls:
+with open('py/url.json', 'r', encoding='utf-8') as urls:
     url_from_file = json.load(urls)
     if len(url_from_file) != 0:
         for i in url_from_file:
@@ -46,18 +46,18 @@ with open('url.json', 'r', encoding='utf-8') as urls:
         if len(not_ok) == 0:
             print("All those url are ok")
             for i in range(len(ok)):
-                with open('url_ok.json', 'w', encoding='utf-8') as urls:
+                with open('py/url_ok.json', 'w', encoding='utf-8') as urls:
                     json.dump(ok, urls, indent=4, sort_keys=True)
-                with open('url.json', 'w', encoding='utf-8') as urls:
+                with open('py/url.json', 'w', encoding='utf-8') as urls:
                     json.dump(not_ok, urls, indent=4, sort_keys=True)
         else:
             print("All of those url are not ok : ")
             for i in range(len(not_ok)):
                 print(not_ok[i])
             for i in range(len(ok)):
-                with open('url_ok.json', 'w', encoding='utf-8') as urls:
+                with open('py/url_ok.json', 'w', encoding='utf-8') as urls:
                     json.dump(ok, urls, indent=4, sort_keys=True)
-                with open('url.json', 'w', encoding='utf-8') as urls:
+                with open('py/url.json', 'w', encoding='utf-8') as urls:
                     json.dump(not_ok, urls, indent=4, sort_keys=True)
     else:
         print("No url to verify")
