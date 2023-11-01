@@ -1,9 +1,17 @@
+# Ignore service account key
 path/to/serviceAccountKey.json
+
+# Ignore webdriver files and logs
 chromedriver.exe
 geckodriver.log
+
+# Ignore every json that contains data
 data.json
 data_scrap.json
 url.json
 url_ok.json
-.idea/
 data_ok.json
+
+# Ignore VSC and Idea files
+.idea/
+.vs/
