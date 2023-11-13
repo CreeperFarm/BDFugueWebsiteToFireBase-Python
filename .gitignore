@@ -15,3 +15,6 @@ data_ok.json
 # Ignore VSC and Idea files
 .idea/
 .vs/
+
+# Ignore node_modules
+node_modules/
